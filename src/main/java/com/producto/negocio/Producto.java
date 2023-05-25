@@ -14,13 +14,13 @@ public Producto() {
 	public String consultarTodo() {
 		String sql = "SELECT * FROM tb_evento ORDER BY id_evento";
 		Conexion con = new Conexion();
-		String tabla = "<table class=tablaEventos border=1><th>ID</th><th>Titulo</th>";
+		String tabla = "<table class=tablaPostulantes border=1><th>ID</th><th>Titulo</th>";
 		ResultSet rs = null;
 		rs = con.Consulta(sql);
 		try {
 			while (rs.next()) {
 				tabla += "<tr><td>" + rs.getInt(1) + "</td>" + "<td>" + rs.getString(3) + "</td>"
-								+ "<td> <a href= editP.jsp?cod=" + rs.getInt(1) + "><pre style=\"text-align:center\">Modificar</pre></a></td>"
+								+ "<td> <a href= editP.jsp?cod=" + rs.getInt(1) + " a><pre style=\"text-align:center\">Modificar</pre></a></td>"
 								+ "<td> <a href= eliminar.jsp?cod=" + rs.getInt(1) + "><pre style=\"text-align:center\">Eliminar</pre></a></td>"
 										
 								+ "</tr>";

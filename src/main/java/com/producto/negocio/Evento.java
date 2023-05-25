@@ -1,9 +1,15 @@
 package com.producto.negocio;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.io.*;
 import java.sql.SQLException;
 import com.producto.datos.*;
+import javax.servlet.ServletException;
 
-public class Evento{
+import javax.servlet.http.Part;
+
+
+public class Evento {
 	private int id,tipo;
 	private String titulo,descr,path;
 		
@@ -61,14 +67,17 @@ public class Evento{
 			e.printStackTrace();
 			System.out.print(e.getMessage());
 		}
-		tabla += "</table>";
+		
 		return tabla;
 	}
+	
+	
 	
 	public void ConsulEditarProductos(int cod) {
 		Conexion obj= new Conexion();
 		ResultSet rs=null;
-		String sql="select id_evento,id_tipoev,titulo,descripcion,path_foto from tb_evento where id_evento="+cod+";";
+		String sql="select id_evento,id_tipoev,titulo,descripcion,foto from tb_evento where id_evento="+cod+";";
+		System.out.println(sql);
 		try {
 			rs=obj.Consulta(sql);
 			while(rs.next()) {
@@ -142,16 +151,7 @@ public class Evento{
 		}
 		
 	}
-	
-	public void insertarEventos(String tipo,String Titulo, String descr, String path) {
-		Conexion obj= new Conexion();
-		ResultSet rs=null;
-		String sql="Insert into tb_evento (id_tipoev,titulo,descripcion,path_foto) values('"+tipo+"','"+Titulo+"','"+descr+"','"+path+"')";
-		System.out.println(sql);
-			obj.Ejecutar(sql);
-			
-		
-	}
+
 	public void eliminarEvento(int cod) {
 		Conexion obj= new Conexion();
 		ResultSet rs=null;
@@ -160,6 +160,75 @@ public class Evento{
 			obj.Ejecutar(sql);
 			
 	}
+	
+	public String consultarEvento() throws IOException {
+        String sql = "SELECT * FROM tb_evento ORDER BY id_evento desc";
+        Conexion con = new Conexion();
+        String tabla = "";
+        ResultSet rs = null;
+        rs = con.Consulta(sql);
+        String demas="C:\\Users\\paulr\\Documents\\eclipse-work\\ASUS_EXAMEN_GAOS\\src\\main\\webapp";
+        String result="";
+        File tempFile;
+        FileOutputStream fos;
+        int cont=0;
+
+        try {
+            while (rs.next()) {
+                tempFile = new File(demas+"\\imagenes\\temporales\\"+rs.getString(3).replaceAll(" ", "")+".jpg");
+                fos = new FileOutputStream(tempFile);
+                byte[] foto = rs.getBytes("foto");
+                fos.write(foto); 
+                fos.close();
+                System.out.println(tempFile.getAbsolutePath());
+                tabla += "<div class=\"nuevoEvento\">"
+						+ "<div class=\"inEvento\" style=\"color: white\">"
+						+ "<h1>"+rs.getString(3)+"</h1>"
+						+ "<p>"+rs.getString(4)+"</p>\r\n"
+						+ "</div>\r\n"
+						+ "<img src='imagenes/temporales/"+rs.getString(3).replaceAll(" ", "")+".jpg'>"
+						+ "</div>";
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            System.out.print(e.getMessage());
+        }
+        tabla += "</table>";
+        return tabla;
+    }
+	public String impFoto(int cod) throws IOException {
+	     String sql = "SELECT * FROM tb_evento where id_evento="+cod+" ORDER BY id_evento desc";
+	        Conexion con = new Conexion();
+	        String tabla = "";
+	        ResultSet rs = null;
+	        rs = con.Consulta(sql);
+	        String demas="C:\\Users\\paulr\\Documents\\eclipse-work\\ASUS_EXAMEN_GAOS\\src\\main\\webapp";
+	        String result="";
+	        File tempFile;
+	        FileOutputStream fos;
+	        int cont=0;
+
+	        try {
+	            while (rs.next()) {
+	                tempFile = new File(demas+"\\imagenes\\temporales\\"+rs.getString(3).replaceAll(" ", "")+".jpg");
+	                fos = new FileOutputStream(tempFile);
+	                byte[] foto = rs.getBytes("foto");
+	                fos.write(foto); 
+	                fos.close();
+	                System.out.println(tempFile.getAbsolutePath());
+	                tabla +="<img src='imagenes/temporales/"+rs.getString(3).replaceAll(" ", "")+".jpg' width=50px>";
+							
+	            }
+	        } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	            System.out.print(e.getMessage());
+	        }
+	        return tabla;
+	}
+
+	 
 	
 	
 }

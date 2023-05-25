@@ -10,7 +10,7 @@ pageEncoding="ISO-8859-1" session="true" import="com.producto.negocio.*" import=
         <link href="css/todo.css" rel="stylesheet" type="text/css">
     </head>
 
-    <body>
+    <body id=bod>
 
 <header>
   <div class="logo">
@@ -22,8 +22,15 @@ pageEncoding="ISO-8859-1" session="true" import="com.producto.negocio.*" import=
     <table>
       <tr>
         <td><a href="eventos.jsp">EVENTOS</a></td>
-        <td><a href="#">CONTACTANOS</a></td>
+        <td><a href="contacto.jsp">CONTACTANOS</a></td>
+        <% HttpSession sesion = request.getSession();
+        if(sesion.getAttribute("usuario")==null){
+        %>
         <td><a href="login.jsp">INICIAR SESION</a></td>
+       <% }
+       else{%> 
+       <td><a href="perfil.jsp">PERFIL</a></td>
+       <%} %>
       </tr>
     </table>
   </div>
@@ -32,7 +39,6 @@ pageEncoding="ISO-8859-1" session="true" import="com.producto.negocio.*" import=
 
 <%
 String usuario;
-HttpSession sesion = request.getSession();
  if (sesion.getAttribute("usuario") == null) //Se verifica si existe la variable
  {
  %>
@@ -45,38 +51,75 @@ HttpSession sesion = request.getSession();
  {
  usuario=(String)sesion.getAttribute("usuario"); //Se devuelve los valores de atributos
  int perfil=(Integer)sesion.getAttribute("perfil");
+  %>
  
- %>
-<h1>PERFIL!</h1>
-<h4>Bienvenid@! 
-<%
-out.println(usuario);
+            
+<form class="addEv" action="newEvento" method="Post" style="color: white" enctype="multipart/form-data">
+<table>
+<tr>
+<td>Categoria</td>
+<td> 
+<% categoria cat=new categoria();
+out.print(cat.mostrarCategoriaEvento());
 %>
-</h4>
-<h1>Estado de aceptación:</h1>
-<%
-Usuario us=new Usuario();
-out.print(us.estado(usuario));
-%>
+ </td>
+</tr>
+<tr>
+<td>Titulo</td>
+<td> <input type="text" name="titulo" required/> </td>
+</tr>
+<tr>
+<td>Descripcion</td>
+<td><input type="text" name="descr" required/></td>
+</tr>
+<tr>
+<td>FOTO DEL EVENTO</td>
+<td><input type="file" name="foto" accept=".jpg" required/></td>
+</tr>
+
+</table>
+
+<br>
+<br>
+<input type="submit" value="Actualizar"> 
+
+</form>
+
+<div class="aside-container">
+        <aside>
+            <% 
+                Pagina pag = new Pagina();
+                String menu = pag.mostrarMenu(perfil);
+                out.print(menu);
+            %>
+        </aside>
+        </div>
 
 
 
+ <br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br>
 
 <%
 }
 %>
  
-     <footer>
+    
+      <footer>
   <div class="container">
     <div class="row">
       <div class="col">
         <h3>Atención al cliente</h3>
         <table>
           <tr>
-            <td><a href="#">Preguntas frecuentes</a></td>
+            <td><a href="preguntas.jsp">Preguntas frecuentes</a></td>
           </tr>
           <tr>
-            <td><a href="#">Contacto</a></td>
+            <td><a href="contacto.jsp">Contacto</a></td>
           </tr>
         </table>
       </div>
@@ -87,11 +130,12 @@ out.print(us.estado(usuario));
         <img src="imagenes/insta.png" width="50px" height="50px" alt="Instagram">
       </div>
       <div class="col">
-        <a href="#" class="btn">Iniciar sesión</a>
+        <a href="login.jsp" class="btn">Iniciar sesión</a>
       </div>
     </div>
   </div>
 </footer>
+     
      
     </body>
 </html>

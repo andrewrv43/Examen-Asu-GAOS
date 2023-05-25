@@ -7,9 +7,9 @@ public class categoria{
 	int id;
 	String nombre;
 	
-	public String mostrarCategoria()
+	public String mostrarCategoriaEvento()
 	{
-	String combo="<select name=cmbCategoria>";
+	String combo="<select name=\"tipo\">";
 	String sql="SELECT * FROM tb_tipo_evento";
 	ResultSet rs=null;
 	Conexion con=new Conexion();

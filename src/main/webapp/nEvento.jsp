@@ -10,7 +10,7 @@ pageEncoding="ISO-8859-1" session="true" import="com.producto.negocio.*" import=
         <link href="css/todo.css" rel="stylesheet" type="text/css">
     </head>
 
-    <body>
+    <body id=bod>
 
 <header>
   <div class="logo">
@@ -22,8 +22,8 @@ pageEncoding="ISO-8859-1" session="true" import="com.producto.negocio.*" import=
     <table>
       <tr>
         <td><a href="eventos.jsp">EVENTOS</a></td>
-        <td><a href="#">CONTACTANOS</a></td>
-        <td><a href="login.jsp">INICIAR SESION</a></td>
+        <td><a href="contacto.jsp">CONTACTANOS</a></td>
+        <td><a href="perfil.jsp">INICIAR SESION</a></td>
       </tr>
     </table>
   </div>
@@ -46,13 +46,19 @@ HttpSession sesion = request.getSession();
  usuario=(String)sesion.getAttribute("usuario"); //Se devuelve los valores de atributos
  int perfil=(Integer)sesion.getAttribute("perfil");
  
- int cod = Integer.parseInt(request.getParameter("cod"));
-Postulantes pos=new Postulantes();
-pos.aceptarPostulante(cod);
-response.sendRedirect("editarEventos.jsp");
-%>
+ %>
  
-            
+ <% Evento pos=new Evento();
+ 
+// pos.insertarEventos(request.getParameter("tipo"),request.getParameter("titulo") , request.getParameter("descr"),request);
+ //pos.doPost(request);
+ 
+ //response.sendRedirect("editarEventos.jsp");
+	
+
+ %>
+
+
 
 
 <%

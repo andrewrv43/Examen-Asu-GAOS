@@ -32,10 +32,11 @@ public class Pagina {
 	
 	public String mostrarMenu(int nperfil)
 	{
-	String menu="<ul>";
+	String menu="<h1 style=\"color:#fff\">MENU</h1>"
+			+ "<ul>";
 	String sql="SELECT * FROM tb_pagina pag, tb_perfil per, \"tb_perfilPagina\" pper "
 	+
-	"WHERE pag.id_pag=pper.id_pag AND pper.id_per=per.id_perfil AND pper.id_per= "+nperfil;
+	"WHERE pag.id_pag=pper.id_pag AND pper.id_per=per.id_perfil AND pper.id_per= "+nperfil+" ORDER BY pag.id_pag desc";
 	Conexion con = new Conexion();
 	ResultSet rs=null;
 	try
@@ -44,7 +45,7 @@ public class Pagina {
 	while(rs.next())
 	{
 	menu+="<li><a href="+rs.getString(3)+" accesskey="+rs.getInt(1)+">"+rs.getString(2)+
-	"</A></li>";
+	"</a></li>";
 	}
 	menu+="</ul>";
 	}

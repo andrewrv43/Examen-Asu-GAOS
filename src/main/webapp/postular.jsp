@@ -10,7 +10,7 @@ pageEncoding="ISO-8859-1" session="true" import="com.producto.negocio.*" import=
         <link href="css/todo.css" rel="stylesheet" type="text/css">
     </head>
 
-    <body>
+    <body id=bod>
 
 <header>
   <div class="logo">
@@ -22,8 +22,15 @@ pageEncoding="ISO-8859-1" session="true" import="com.producto.negocio.*" import=
     <table>
       <tr>
         <td><a href="eventos.jsp">EVENTOS</a></td>
-        <td><a href="#">CONTACTANOS</a></td>
+        <td><a href="contacto.jsp">CONTACTANOS</a></td>
+        <% HttpSession sesion = request.getSession();
+        if(sesion.getAttribute("usuario")==null){
+        %>
         <td><a href="login.jsp">INICIAR SESION</a></td>
+       <% }
+       else{%> 
+       <td><a href="perfil.jsp">PERFIL</a></td>
+       <%} %>
       </tr>
     </table>
   </div>

@@ -19,7 +19,7 @@ if (respuesta)
 {
 sesion.setAttribute("usuario", usuario.getNombre()); //Se añade atributos
 sesion.setAttribute("perfil", usuario.getPerfil()); //Se añade atributos
-response.sendRedirect("menu.jsp"); //Se redirecciona a una página específica
+response.sendRedirect("perfil.jsp"); //Se redirecciona a una página específica
 }
 else
 {

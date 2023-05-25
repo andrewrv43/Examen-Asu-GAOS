@@ -7,7 +7,12 @@
 
   --color-blanco: #fff;
 }
-
+#bod{
+	background: #243b55;
+}
+#bg{
+	background-color:rgba(0,0,250,0.4);
+}
 /* Estilos del header */
 header {
   display: flex;
@@ -58,9 +63,7 @@ footer {
   color: var(--color-blanco);
   padding: 40px 0;  
   background-color: rgba(0,0,0,0.4);
-  	position: fixed;
-	bottom: -25px;
-	width: 100%;
+ margin-top:auto;
 	padding-top: 30px;
 	padding-left: 60px;
   
@@ -68,7 +71,6 @@ footer {
 .container{
 	
 	  display: flex;
-  flex-direction: row;
   justify-content: center;
   align-content: center;
 }
@@ -299,3 +301,307 @@ body {
 .nuevoEvento:hover{
 	background-color: rgba(0,0,0,0.4);
 }
+
+
+.contenidoPag{
+	display: flex;
+	flex-direction: row;
+	gap: 30px;
+}
+
+/*TABLAS*/
+.aside-container {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-75%);
+  width: 300px;
+  padding: 20px;
+  background-color: #243b55;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+aside {
+  margin-top: 20px;
+}
+
+aside ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+aside ul li {
+  margin-bottom: 10px;
+}
+
+aside ul li a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+aside ul li a:hover {
+  color: #ffd700;
+}
+
+aside ul li a:before {
+  content: "\2022"; /* Agrega un punto antes de cada enlace */
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.centro{
+	text-align: center;
+}
+
+.tablaPostulantes {
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+.tablaPostulantes th {
+    background-color: #7892b0;
+    color: black;
+}
+
+.tablaPostulantes td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: center;
+    color:#000;
+}
+
+.tablaPostulantes td:first-child {
+    background-color: #c3d9ff;
+}
+.tablaPostulantes td:nth-last-child(2),
+.tablaPostulantes td:nth-last-child(1) {
+    transition: background-color 200ms;
+}
+
+.tablaPostulantes td:nth-last-child(2):hover,
+.tablaPostulantes td:nth-last-child(1):hover {
+    background-color: #00ff00; /* Verde */
+}
+
+.tablaPostulantes td:nth-last-child(1):hover {
+    background-color: #ff0000; /* Rojo */
+}
+
+.tablaPostulantes td a {
+    text-decoration: none;
+    color: inherit;
+}
+/*CSS FORM*/
+.otroForm {
+  color: #fff;
+  width: 75%;
+  margin: 0 auto;
+  margin-left: 0px;
+}
+
+.editEv {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.editEv td {
+  padding: 10px;
+}
+
+.editEv td:first-child {
+  font-weight: bold;
+}
+
+.editEv input[type="text"],
+.editEv select {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  background-color: #f1f1f1;
+  color: #000000;
+}
+
+.editEv input[type="file"] {
+  border: none;
+  background-color: transparent;
+  color: #000000;
+}
+
+.editEv img {
+  width: 50px;
+}
+
+.otroForm input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #7892b0;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.otroForm input[type="submit"]:hover {
+  background-color: #5c7996;
+}
+
+/*AGREGAR EVENTO*/
+.addEv {
+  color: #fff;
+  width: 75%;
+  margin: 0 auto;
+  margin-left: 0px;
+}
+
+.addEv table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.addEv td {
+  padding: 10px;
+}
+
+.addEv td:first-child {
+  font-weight: bold;
+}
+
+.addEv input[type="text"],
+.addEv select,
+.addEv input[type="file"] {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  background-color: #f1f1f1;
+  color: #000000;
+}
+
+.addEv input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #7892b0;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.addEv input[type="submit"]:hover {
+  background-color: #5c7996;
+}
+
+/*CONTACTO*/
+
+
+.contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.contact-container iframe {
+  width: 60%;
+  height: 400px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.contact-info {
+  margin-left: 40px;
+  color: #fff;
+}
+
+.contact-info h2 {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.contact-info p {
+  color: #ccc;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.contact-info p:last-child {
+  margin-bottom: 0;
+}
+
+/*PREGUNTAS*/
+#preguntas {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+#preguntas table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
+}
+
+#preguntas th {
+  background-color: #7892b0;
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+#preguntas td {
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  
+}
+#pre{
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+#res{
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+#preguntas tr:first-child td:first-child,
+#preguntas tr:first-child th {
+  background-color: #c3d9ff;
+}
+
+#preguntas td:first-child {
+  text-align: left;
+}
+/*INDEX CONTENT*/
+
+.principal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #243b55; /* Color de fondo azul oscuro */
+}
+
+.texto {
+  flex: 1;
+  text-align: justify;
+  color: white; /* Color de texto blanco */
+  padding: 20px;
+}
+
+.UPSLOGO {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+  background-color: #f2f2f2; /* Color de fondo resaltado */
+}
+
+.UPSLOGO img {
+  max-width: 500px;
+}
+

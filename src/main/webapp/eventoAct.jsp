@@ -10,7 +10,7 @@ pageEncoding="ISO-8859-1" session="true" import="com.producto.negocio.*" import=
         <link href="css/todo.css" rel="stylesheet" type="text/css">
     </head>
 
-    <body>
+    <body id=bod>
 
 <header>
   <div class="logo">
@@ -22,8 +22,15 @@ pageEncoding="ISO-8859-1" session="true" import="com.producto.negocio.*" import=
     <table>
       <tr>
         <td><a href="eventos.jsp">EVENTOS</a></td>
-        <td><a href="#">CONTACTANOS</a></td>
+        <td><a href="contacto.jsp">CONTACTANOS</a></td>
+        <% HttpSession sesion = request.getSession();
+        if(sesion.getAttribute("usuario")==null){
+        %>
         <td><a href="login.jsp">INICIAR SESION</a></td>
+       <% }
+       else{%> 
+       <td><a href="perfil.jsp">PERFIL</a></td>
+       <%} %>
       </tr>
     </table>
   </div>
@@ -32,7 +39,6 @@ pageEncoding="ISO-8859-1" session="true" import="com.producto.negocio.*" import=
 
 <%
 String usuario;
-HttpSession sesion = request.getSession();
  if (sesion.getAttribute("usuario") == null) //Se verifica si existe la variable
  {
  %>
@@ -45,20 +51,19 @@ HttpSession sesion = request.getSession();
  {
  usuario=(String)sesion.getAttribute("usuario"); //Se devuelve los valores de atributos
  int perfil=(Integer)sesion.getAttribute("perfil");
+ 
  %>
-<%
+ 
+ <% Evento ev=new Evento();
+ 
+if(ev.modificarEvento(Integer.parseInt(request.getParameter("editarID")),Integer.parseInt(request.getParameter("editarTipo")),
+		(request.getParameter("editarTitulo")),(request.getParameter("editarDescr")),
+		(request.getParameter("editarPath")))){
+	response.sendRedirect("editarEventos.jsp");
+	
+};
+ %>
 
-%>
-<h1 style="color: white">EVENTOS</h1>
-<%Producto pro=new Producto();
-out.print(pro.consultarTodo());
-%>
-<br>
-<br>
-<h1 style="color: white">Postulantes Pendientes</h1>
-<%Postulantes pos=new Postulantes();
-out.print(pos.consultarPostulantes());
-%>
 
 
 
@@ -66,17 +71,18 @@ out.print(pos.consultarPostulantes());
 }
 %>
  
-     <footer>
+  
+      <footer>
   <div class="container">
     <div class="row">
       <div class="col">
         <h3>Atención al cliente</h3>
         <table>
           <tr>
-            <td><a href="#">Preguntas frecuentes</a></td>
+            <td><a href="preguntas.jsp">Preguntas frecuentes</a></td>
           </tr>
           <tr>
-            <td><a href="#">Contacto</a></td>
+            <td><a href="contacto.jsp">Contacto</a></td>
           </tr>
         </table>
       </div>
@@ -87,11 +93,12 @@ out.print(pos.consultarPostulantes());
         <img src="imagenes/insta.png" width="50px" height="50px" alt="Instagram">
       </div>
       <div class="col">
-        <a href="#" class="btn">Iniciar sesión</a>
+        <a href="login.jsp" class="btn">Iniciar sesión</a>
       </div>
     </div>
   </div>
 </footer>
+     
      
     </body>
 </html>
